@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-warning">Formulario de Contacto</h2>
+
+        <form #formContacto="ngForm" (ngSubmit)="enviar(formContacto)">
+
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required minlength="3"
+                    #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched">
+
+                <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger">
+                    <small *ngIf="nombreRef.errors?.['required']">
+                        El nombre es obligatorio
+                    </small>
+                    <small *ngIf="nombreRef.errors?.['minlength']">
+                        Mínimo 3 caracteres
+                    </small>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email" required email
+                    #emailRef="ngModel" [class.is-invalid]="emailRef.invalid && emailRef.touched">
+
+                <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger">
+                    <small *ngIf="emailRef.errors?.['required']">
+                        El email es obligatorio
+                    </small>
+                    <small *ngIf="emailRef.errors?.['email']">
+                        Formato de email inválido
+                    </small>
+                </div>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="mb-3">
+                <label>Mensaje</label>
+                <textarea class="form-control" name="mensaje" [(ngModel)]="mensaje" required minlength="10"
+                    #mensajeRef="ngModel" [class.is-invalid]="mensajeRef.invalid && mensajeRef.touched">
+                </textarea>
+
+                <div *ngIf="mensajeRef.invalid && mensajeRef.touched" class="text-danger">
+                    <small *ngIf="mensajeRef.errors?.['required']">
+                        El mensaje es obligatorio
+                    </small>
+                    <small *ngIf="mensajeRef.errors?.['minlength']">
+                        Mínimo 10 caracteres
+                    </small>
+                </div>
+            </div>
+
+            <!-- Botón -->
+            <button class="btn btn-warning" type="submit" [disabled]="formContacto.invalid">
+                Enviar
+            </button>
+
+        </form>
+
+        <!-- RESULTADO GUARDADO -->
+        <hr>
+
+        <div *ngIf="datosGuardados" class="card bg-dark text-warning mt-4">
+            <div class="card-body">
+                <h5>Información enviada</h5>
+                <p><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p>
+                <p><strong>Email:</strong> {{ datosGuardados.email }}</p>
+                <p><strong>Mensaje:</strong> {{ datosGuardados.mensaje }}</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -12,9 +12,9 @@ export class Contacto implements OnInit {
 
   nombre: string = '';
   email: string = '';
-  mensaje: string = '';
-
+  productoSeleccionado: string = '';
   datosGuardados: any = null;
+  cantidad: number = 1;
 
   ngOnInit() {
     const data = localStorage.getItem('contacto');
@@ -29,7 +29,8 @@ export class Contacto implements OnInit {
     const datos = {
       nombre: this.nombre,
       email: this.email,
-      mensaje: this.mensaje
+      producto: this.productoSeleccionado,
+      cantidad: this.cantidad
     };
 
     // Guardar en localStorage

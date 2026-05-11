@@ -8,31 +8,8 @@
 </head>
 
 <body>
-    <section class="contact">
-  <h2>Contacto</h2>
-  <div class="contact-grid">
-    <div class="contact-card">
-      <i class="icon-whatsapp"></i>
-      <h3>Pide por WhatsApp</h3>
-      <p>+56 9 1234 5678</p>
-    </div>
-    <div class="contact-card">
-      <i class="icon-clock"></i>
-      <h3>Horarios</h3>
-      <p>Lun - Jue: 12:00 a 22:00</p>
-      <p>Vie - Sáb: 12:00 a 23:30</p>
-    </div>
-    <div class="contact-card">
-      <i class="icon-instagram"></i>
-      <h3>Síguenos</h3>
-      <p>@LluviaHamburguesas_SCL</p>
-    </div>
-  </div>
-  <p class="delivery-note">📍 Operando exclusivamente en Santiago con despacho a domicilio.</p>
-</section>
-
     <div class="container mt-5">
-        <h2 class="text-warning">Déjanos un mensaje</h2>
+        <h2 class="text-warning">Haz tu pedido aquí</h2>
 
         <form #formContacto="ngForm" (ngSubmit)="enviar(formContacto)">
 
@@ -68,39 +45,41 @@
                 </div>
             </div>
 
-            <!-- Mensaje -->
+            <!-- Producto, menú desplegable -->
             <div class="mb-3">
-                <label>Mensaje</label>
-                <textarea class="form-control" name="mensaje" [(ngModel)]="mensaje" required minlength="10"
-                    #mensajeRef="ngModel" [class.is-invalid]="mensajeRef.invalid && mensajeRef.touched">
-                </textarea>
+                <label>Producto </label>
+                <select [(ngModel)]="productoSeleccionado" name="productos">
+                    [class.is-invalid]="productoRef.invalid && productoRef.touched">
+                    <option value="">Selecciona un producto</option>
+                    <option value="Hamburguesa Clásica">Hamburguesa Clásica</option>
+                    <option value="Hamburguesa BBQ">Hamburguesa BBQ</option>
+                    <option value="Hamburguesa Vegetariana">Hamburguesa Vegetariana</option>
+                </select>
+            </div>
 
-                <div *ngIf="mensajeRef.invalid && mensajeRef.touched" class="text-danger">
-                    <small *ngIf="mensajeRef.errors?.['required']">
-                        El mensaje es obligatorio
-                    </small>
-                    <small *ngIf="mensajeRef.errors?.['minlength']">
-                        Mínimo 10 caracteres
-                    </small>
-                </div>
+            <!-- Cantidad -->
+            <label>Cantidad</label>
+            <input type="number" class="form-control" name="cantidad" [(ngModel)]="cantidad" min="0" max="10" required
+                #cantidadRef="ngModel" [class.is-invalid]="cantidadRef.invalid && cantidadRef.touched">
+
+            <div class="invalid-feedback" *ngIf="cantidadRef.errors?.['max']">
+                El máximo permitido son 10 hamburguesas.
             </div>
 
             <!-- Botón -->
             <button class="btn btn-warning" type="submit" [disabled]="formContacto.invalid">
                 Enviar
             </button>
-
         </form>
-
         <!-- RESULTADO GUARDADO -->
         <hr>
-
         <div *ngIf="datosGuardados" class="card bg-dark text-warning mt-4">
             <div class="card-body">
-                <h5>Información enviada</h5>
+                <h5>¡Pedido enviado!</h5>
                 <p><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p>
                 <p><strong>Email:</strong> {{ datosGuardados.email }}</p>
-                <p><strong>Mensaje:</strong> {{ datosGuardados.mensaje }}</p>
+                <p><strong>Pedido:</strong> {{ datosGuardados.producto }}</p>
+                <p><strong>Cantidad:</strong> {{ datosGuardados.cantidad }}</p>
             </div>
         </div>
 

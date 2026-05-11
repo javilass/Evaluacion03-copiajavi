@@ -35,3 +35,22 @@
     border: none !important;
     color: white !important;
 }
+
+.about-badges {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background-color: #ff5733; 
+    color: white;              
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

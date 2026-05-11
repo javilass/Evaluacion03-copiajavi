@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+    background-color: #F2994B !important;
+}
+
+.nav-link,
+.navbar-brand {
+    color: white !important;
+}
+
+.btn {
+    background-color: #F2994B !important;
+    border: none !important;
+}
+
+.btn:hover {
+    background-color: #F2AC57 !important;
+    border: none !important;
+}
+
+.alert.alert-danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border: none !important;
+    opacity: 0.8 !important;
+}
+
+.card-body {
+    background-color: #A65E58;
+    border: none !important;
+    color: white !important;
+}
